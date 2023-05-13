@@ -1,0 +1,18 @@
+.layout {
+  position: absolute;
+  display: grid;
+  top: 20px;
+  right: 100px;
+  left: 100px;
+  bottom: 20px;
+  background-color: #eae6df;
+  z-index: 1;
+}
+
+@media screen and (max-width: 750px) {
+  .layout {
+    right: 0;
+    left: 0;
+    bottom: auto;
+  }
+}

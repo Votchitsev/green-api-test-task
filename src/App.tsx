@@ -1,9 +1,16 @@
 import React from 'react';
-import style from 'App.module.scss';
+import Layout from 'modules/common/components/Layout';
+import Background from 'modules/common/components/Background';
+import AuthorizationPage from 'modules/authorization/pages';
+import 'App.scss';
 
 function App() {
   return (
-  <section></section>
+    <Background>
+      <Layout>
+        <AuthorizationPage />
+      </Layout>
+    </Background>
   );
 }
 

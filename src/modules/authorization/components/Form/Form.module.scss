@@ -1,0 +1,42 @@
+label {
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 70px;
+  width: 100%;
+
+  span {
+    margin-left: 15px;
+    margin-bottom: 8px;
+  }
+}
+
+.auth_form {
+  display: grid;
+  grid-template-rows: auto auto;
+  height: 400px;
+  justify-self: center;
+  align-self: center;
+  width: 400px;
+  height: 300px;
+  padding: 50px;
+}
+
+input {
+  padding: 0 15px;
+  height: 48px;
+  border: 2px solid #00a884;;
+  border-radius: 24px;
+  font-size: medium;
+}
+
+.btn_style {
+  justify-self: center;
+}
+
+@media screen and (max-width: 550px) {
+  .auth_form {
+    width: 300px;
+    min-width: 300px;
+    padding: 0;
+  }
+}

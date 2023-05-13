@@ -1,0 +1,9 @@
+.background {
+  display: grid;
+  grid-template-rows: 127px auto;
+  height: 100vh;
+
+  &_top {
+    background-color: #00a884;
+  }
+}
