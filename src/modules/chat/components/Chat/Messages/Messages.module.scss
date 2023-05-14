@@ -1,0 +1,9 @@
+.messages_area {
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 100px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow: -moz-scrollbars-none;
+}

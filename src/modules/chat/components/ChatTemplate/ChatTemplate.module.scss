@@ -1,0 +1,11 @@
+.template {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  max-height: 95vh;
+}
+
+@media screen and (max-width: 1200px) {
+  .template {
+    grid-template-columns: auto;
+  }
+}

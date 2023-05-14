@@ -1,0 +1,23 @@
+.item {
+  width: 90%;
+  height: 60px;
+  display: flex;
+  background-color: #e9edef;
+  border-bottom: 1px solid #d1d7db;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 1em;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.delete_button {
+  position: absolute;
+  right: -100px;
+}
+
+.delete_button_active {
+  position: absolute;
+  right: 20px;
+  transition: right 500ms;
+}
