@@ -34,11 +34,7 @@ function Form () {
       apiTokenInstance: '',
     });
   };
-
-  useEffect(() => {
-    console.log(auth);
-  }, [auth]);
-
+  
   return (
     <form className={style.auth_form} onSubmit={onSubmitHandle}>
       <label>

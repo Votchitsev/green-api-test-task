@@ -1,8 +1,9 @@
 import React, { useState, type CSSProperties } from 'react';
 import style from 'modules/chat/components/ChatList/ChatListItem/ChatListItem.module.scss';
 import Button from 'modules/common/components/Button';
+import { PropInterface } from './interface';
 
-function ChatListItem() {
+function ChatListItem({ phoneNumber } : PropInterface) {
   const [buttonStyle, setButtonStyle] = useState<CSSProperties>(style.delete_button);
 
   const onEnterHandle = (action: 'enter' | 'leave') => {
@@ -21,7 +22,7 @@ function ChatListItem() {
       onMouseEnter={() => onEnterHandle('enter')}
       onMouseLeave={() => onEnterHandle('leave')}
     >
-      +7 (000) 000-00-00
+      { phoneNumber }
       <Button
         type={'button'}
         name={'delete'}

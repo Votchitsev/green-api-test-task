@@ -3,9 +3,9 @@ import { addToLocalStorage, getFromLocalStorage } from 'localStore';
 import { type ChatInterface } from './interface';
 
 const initialState: ChatInterface = {
-  chatList: getFromLocalStorage('chatList') || [],
+  chatList: getFromLocalStorage('chats') || [],
   activeChat: null,
-}
+};
 
 export const chatSlice = createSlice({
   name: 'chat',
@@ -18,8 +18,7 @@ export const chatSlice = createSlice({
       return state;
     }
   },
-  },
-);
+});
 
 export default chatSlice.reducer;
 
