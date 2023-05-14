@@ -11,7 +11,13 @@ function ChatList() {
     <section className={style.container}>
       <AddNumberForm />
       <ul className={style.list}>
-        { chatState.chatList.map(chat => <ChatListItem key={chat} phoneNumber={chat}/>) }
+        { chatState.chatList.map(
+          chat => 
+          <ChatListItem
+            key={chat}
+            phoneNumber={Number(chat)}
+            activeChat={chatState.activeChat}
+          />) }
       </ul>
     </section>
   )

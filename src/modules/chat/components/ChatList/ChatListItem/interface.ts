@@ -1,3 +1,4 @@
 export interface PropInterface {
-  phoneNumber: number,
+  phoneNumber: number;
+  activeChat: number;
 };

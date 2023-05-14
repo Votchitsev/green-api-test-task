@@ -1,14 +1,12 @@
-import React, { type ChangeEvent, type FormEvent, useState, useEffect } from 'react';
+import React, { type ChangeEvent, type FormEvent, useState } from 'react';
 import style from 'modules/authorization/components/Form/Form.module.scss'
 import Button from 'modules/common/components/Button';
 import { setAuthData } from 'modules/authorization/state/slice';
-import { useAppSelector, useAppDispatch } from 'hooks';
+import { useAppDispatch } from 'hooks';
 import { formDataInterface } from './interface';
 
 function Form () {
   const dispatch = useAppDispatch();
-
-  const auth = useAppSelector(state => state.auth);
 
   const [formData, setFormData] = useState<formDataInterface>({
     idInstance: '',
