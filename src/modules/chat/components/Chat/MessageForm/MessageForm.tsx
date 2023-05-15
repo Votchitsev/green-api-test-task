@@ -15,7 +15,7 @@ function MessageForm() {
 
     const reqData = {
       idInstance: auth.idInstance,
-      apiTokenKey: auth.ApiTokenInstance,
+      apiTokenInstance: auth.ApiTokenInstance,
       destNumber: chat.activeChat,
       message: formData
     }

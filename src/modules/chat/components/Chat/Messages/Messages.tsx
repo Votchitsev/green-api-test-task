@@ -33,7 +33,7 @@ function Messages() {
 
     const reqData = {
       idInstance: auth.idInstance,
-      apiTokenKey: auth.ApiTokenInstance,
+      apiTokenInstance: auth.ApiTokenInstance,
     };
 
     dispatch(
