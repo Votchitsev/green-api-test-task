@@ -1,6 +1,6 @@
 import React from 'react';
 import Messages from 'modules/chat/components/Chat/Messages';
-import MessageForm from 'modules/chat/components/Chat/MessageForm/'
+import MessageForm from 'modules/chat/components/Chat/MessageForm/';
 import style from 'modules/chat/components/Chat/Chat.module.scss';
 import Button from 'modules/common/components/Button';
 import { useAppDispatch, useAppSelector } from 'hooks';
