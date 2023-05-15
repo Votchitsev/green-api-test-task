@@ -1,22 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { addToLocalStorage, getFromLocalStorage } from 'localStore';
-import { type MessageInterface, type ChatInterface, type ChatItemInterface } from './interface';
+import {
+  type MessageInterface,
+  type ChatInterface,
+  type ChatItemInterface,
+  type ReqDataInterface,
+} from './interface';
 import { BaseURL } from 'appConfig';
-
-interface ReqDataInterface {
-  idInstance: string;
-  apiTokenKey: string;
-  destNumber?: number;
-  message?: string;
-};
 
 export const fetchSendMessage = createAsyncThunk(
   'chat/sendMessage',
   async (data: ReqDataInterface) => {
     try {
       const response = await axios.post(
-        `${BaseURL}waInstance${data.idInstance}/SendMessage/${data.apiTokenKey}`,
+        `${BaseURL}waInstance${data.idInstance}/SendMessage/${data.apiTokenInstance}`,
         {
           chatId: `${data.destNumber}@c.us`,
           message: data.message,
@@ -38,12 +36,14 @@ export const fetchIncomingMessages = createAsyncThunk(
   'chat/fetchIncomingMessages',
   async (data: ReqDataInterface) => {
     try {
-      const response = await axios.get(`${BaseURL}waInstance${data.idInstance}/ReceiveNotification/${data.apiTokenKey}`);
+      const response = await axios.get(
+        `${BaseURL}waInstance${data.idInstance}/ReceiveNotification/${data.apiTokenInstance}`
+      );
       
       if (response.data?.receiptId) {
         
         await axios.delete(
-          `${BaseURL}waInstance${data.idInstance}/DeleteNotification/${data.apiTokenKey}/${response.data.receiptId}`
+          `${BaseURL}waInstance${data.idInstance}/DeleteNotification/${data.apiTokenInstance}/${response.data.receiptId}`
         ); 
       };
 
@@ -61,6 +61,7 @@ export const fetchIncomingMessages = createAsyncThunk(
 const initialState: ChatInterface = {
   chatList: getFromLocalStorage('chats') || [],
   activeChat: Number(getFromLocalStorage('activeChat')) || null,
+  error: null,
 };
 
 export const chatSlice = createSlice({
@@ -103,6 +104,10 @@ export const chatSlice = createSlice({
       state.activeChat = action.payload;
       addToLocalStorage('activeChat', String(state.activeChat));
       return state;
+    },
+    skipError: (state) => {
+      state.error = null;
+      return state;
     }
   },
   extraReducers(builder) {
@@ -123,7 +128,7 @@ export const chatSlice = createSlice({
       return state;
     });
     builder.addCase(fetchSendMessage.rejected, (state, action) => {
-      alert(action.error.message);
+      state.error = action.error.message;
       return state;
     });
     builder.addCase(fetchIncomingMessages.fulfilled, (state, action) => {
@@ -147,7 +152,7 @@ export const chatSlice = createSlice({
       return state;
     });
     builder.addCase(fetchIncomingMessages.rejected, (state, action) => {      
-      alert(action.error.message);
+      state.error =  action.error.message;
       return state;
     });
   },
@@ -155,4 +160,9 @@ export const chatSlice = createSlice({
 
 export default chatSlice.reducer;
 
-export const { createChat, removeChat, setActive } = chatSlice.actions;
+export const {
+  createChat,
+  removeChat,
+  setActive,
+  skipError,
+} = chatSlice.actions;

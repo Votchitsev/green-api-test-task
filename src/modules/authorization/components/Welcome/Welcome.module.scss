@@ -7,8 +7,16 @@
   padding: 0 50px;
 }
 
+@media screen and (max-width: 1260px) {
+  .welcome_text {
+    font-size: 1.5em;
+  }
+}
+
 @media screen and (max-width: 550px) {
   .welcome_text {
     font-size: 2em;
+    margin: 0;
+    padding: 20px;
   }
 }

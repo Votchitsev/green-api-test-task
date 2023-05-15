@@ -39,6 +39,7 @@ function ChatListItem({ phoneNumber, activeChat } : PropInterface) {
       className={`${style.item} ${activeChat === phoneNumber ? style.item__active: ''}`}
       onMouseEnter={() => onEnterHandle('enter')}
       onMouseLeave={() => onEnterHandle('leave')}
+      onTouchStart={() => onEnterHandle('enter')}
       onClick={onSetActiveHandle}
     >
       { phoneNumber }

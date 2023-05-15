@@ -1,0 +1,30 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &_content {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    min-width: 300px;
+    height: fit-content;
+    background-color: #d1d7db;
+    z-index: 2;
+    align-items: center;
+    padding: 10px 15px 50px;
+    border-radius: 6px;
+  }
+
+  &_message {
+    margin-bottom: 20px;
+    padding: 20px 15px;
+  }
+}

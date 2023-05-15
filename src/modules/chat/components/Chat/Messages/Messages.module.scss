@@ -4,6 +4,19 @@
   margin-right: 100px;
   display: flex;
   flex-direction: column;
+  justify-content: end;
   overflow-y: scroll;
   overflow: -moz-scrollbars-none;
+}
+
+@media screen and (max-width: 1200px) {
+  .messages_area {
+    margin-right: 50px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .messages_area {
+    margin-right: 10px;
+  }
 }

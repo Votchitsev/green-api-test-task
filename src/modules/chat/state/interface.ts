@@ -11,4 +11,12 @@ export interface ChatItemInterface {
 export interface ChatInterface {
   chatList: ChatItemInterface[] | [],
   activeChat?: number,
+  error: string | null,
+};
+
+export interface ReqDataInterface {
+  idInstance: string;
+  apiTokenInstance: string;
+  destNumber?: number;
+  message?: string;
 };
