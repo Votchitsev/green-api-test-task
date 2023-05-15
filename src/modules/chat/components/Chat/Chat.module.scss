@@ -2,4 +2,33 @@
   display: grid;
   grid-template-rows: 80% 20%;
   height: 95vh;
+  transition: all 500ms;
+}
+
+.close_button {
+  visibility: hidden;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(209, 139, 139);
+
+  &:hover {
+    background-color: rgb(149, 99, 99);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .chat_container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #eae6df;
+    padding: 2%;
+  }
+
+  .close_button {
+    visibility: visible;
+  }
 }

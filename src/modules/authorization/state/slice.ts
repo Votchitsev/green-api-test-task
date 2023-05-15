@@ -21,9 +21,19 @@ export const authSlice = createSlice({
         ApiTokenInstance: action.payload.apiTokenInstance,
       };
     },
+    logout: (state) => {
+      addToLocalStorage('idInstance', null);
+      addToLocalStorage('apiTokenInstance', null);
+
+      return {
+        ...state,
+        idInstance: null,
+        ApiTokenInstance: null,
+      }
+    }
   },
 });
 
 export default authSlice.reducer;
 
-export const { setAuthData } = authSlice.actions;
+export const { setAuthData, logout } = authSlice.actions;

@@ -13,7 +13,10 @@ function App() {
   useEffect(() => {
     if (credentials.idInstance && credentials.ApiTokenInstance) {
       setIsAuth(true);
+      return;
     }
+
+    setIsAuth(false);
   }, [credentials]);
 
   return (

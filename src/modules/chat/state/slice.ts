@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { addToLocalStorage, getFromLocalStorage } from 'localStore';
-import { MessageInterface, type ChatInterface, type ChatItemInterface } from './interface';
+import { type MessageInterface, type ChatInterface, type ChatItemInterface } from './interface';
 import { BaseURL } from 'appConfig';
 
 interface ReqDataInterface {
@@ -50,10 +50,10 @@ export const fetchIncomingMessages = createAsyncThunk(
       if (response.statusText === 'OK') {
         return response.data;
       };
-
+      
       throw new Error(response.statusText);
     } catch (error) {
-      return error;
+      throw new Error(error);
     };
   },
 );
@@ -122,6 +122,10 @@ export const chatSlice = createSlice({
 
       return state;
     });
+    builder.addCase(fetchSendMessage.rejected, (state, action) => {
+      alert(action.error.message);
+      return state;
+    });
     builder.addCase(fetchIncomingMessages.fulfilled, (state, action) => {
       if (!action.payload) {
         return state;
@@ -140,6 +144,10 @@ export const chatSlice = createSlice({
 
       addToLocalStorage('chats', JSON.stringify(state.chatList));
 
+      return state;
+    });
+    builder.addCase(fetchIncomingMessages.rejected, (state, action) => {      
+      alert(action.error.message);
       return state;
     });
   },
