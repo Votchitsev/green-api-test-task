@@ -4,11 +4,11 @@ import { MessageProp } from 'modules/chat/components/Chat/Messages/Message/inter
 
 const messageStyles = {
   incoming: {
-    backgroundColor: 'blue',
+    backgroundColor: '#d1d7db',
     alignSelf: 'flex-start'
   }, 
   outgoing: {
-    backgroundColor: 'red',
+    backgroundColor: '#ffeecd',
     alignSelf: 'flex-end'
   }
 }

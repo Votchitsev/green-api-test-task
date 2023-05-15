@@ -14,8 +14,8 @@ function ChatList() {
         { chatState.chatList.map(
           chat => 
           <ChatListItem
-            key={chat}
-            phoneNumber={Number(chat)}
+            key={chat.phoneNumber}
+            phoneNumber={Number(chat.phoneNumber)}
             activeChat={chatState.activeChat}
           />) }
       </ul>

@@ -13,7 +13,7 @@ export const authSlice = createSlice({
   reducers: {
     setAuthData: (state, action) => {
       addToLocalStorage('idInstance', action.payload.idInstance);
-      addToLocalStorage('apiTokenInstance', action.payload.apiTokenInstance);
+      addToLocalStorage('apiTokenInstance', JSON.stringify(String(action.payload.apiTokenInstance)));
 
       return {
         ...state,

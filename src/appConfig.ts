@@ -1,0 +1,1 @@
+export const BaseURL: string = 'https://api.green-api.com/';

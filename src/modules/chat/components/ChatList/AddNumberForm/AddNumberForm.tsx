@@ -27,7 +27,7 @@ function AddNumberForm () {
     <form className={style.add_number_form} onSubmit={onSubmitHandle}>
       <input
         type='text'
-        placeholder='Enter form number'
+        placeholder='Enter phone number'
         onChange={onChangeHandle}
         value={formData}
         required
