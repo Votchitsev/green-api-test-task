@@ -7,8 +7,8 @@ import { BaseURL } from 'appConfig';
 interface ReqDataInterface {
   idInstance: string;
   apiTokenKey: string;
-  destNumber: number;
-  message: string;
+  destNumber?: number;
+  message?: string;
 };
 
 export const fetchSendMessage = createAsyncThunk(
@@ -31,6 +31,30 @@ export const fetchSendMessage = createAsyncThunk(
     } catch (error) {
       throw new Error (error);
     }
+  },
+);
+
+export const fetchIncomingMessages = createAsyncThunk(
+  'chat/fetchIncomingMessages',
+  async (data: ReqDataInterface) => {
+    try {
+      const response = await axios.get(`${BaseURL}waInstance${data.idInstance}/ReceiveNotification/${data.apiTokenKey}`);
+      
+      if (response.data?.receiptId) {
+        
+        await axios.delete(
+          `${BaseURL}waInstance${data.idInstance}/DeleteNotification/${data.apiTokenKey}/${response.data.receiptId}`
+        ); 
+      };
+
+      if (response.statusText === 'OK') {
+        return response.data;
+      };
+
+      throw new Error(response.statusText);
+    } catch (error) {
+      return error;
+    };
   },
 );
 
@@ -91,6 +115,26 @@ export const chatSlice = createSlice({
       const activeChat = state.chatList.find(
         (chat: ChatItemInterface) => Number(chat.phoneNumber) === Number(state.activeChat),
       );
+
+      activeChat.messages = [...activeChat.messages, message];
+
+      addToLocalStorage('chats', JSON.stringify(state.chatList));
+
+      return state;
+    });
+    builder.addCase(fetchIncomingMessages.fulfilled, (state, action) => {
+      if (!action.payload) {
+        return state;
+      };
+
+      const activeChat = state.chatList.find(
+        (chat: ChatItemInterface) => Number(chat.phoneNumber === action.payload.body.senderData.chatId.replace(/@c.us/, '')),
+      );
+
+      const message: MessageInterface = {
+        type: 'incoming',
+        text: action.payload.body.messageData.textMessageData.textMessage,
+      };
 
       activeChat.messages = [...activeChat.messages, message];
 
